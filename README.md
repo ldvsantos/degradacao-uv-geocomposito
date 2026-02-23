@@ -1,6 +1,6 @@
 # UV Degradation of *Typha domingensis* / *Boehmeria nivea* Biogeosynthetic Composite
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18748157.svg)](https://doi.org/10.5281/zenodo.18748157)
 
 Research data and statistical analysis scripts supporting the manuscript:
 
@@ -66,4 +66,4 @@ This dataset is released under [CC BY 4.0](https://creativecommons.org/licenses/
 
 If you use these data, please cite:
 
-Santos, L.D.V.; Holanda, F.S.R.; da Silva, E.G.; Azerêdo, A.J.S.; Rodrigues Júnior, J.J.; de Araújo Filho, R.N.; Sussuchi, E.M.; Pedrotti, A.; da Silva Filho, C.I. (2025). *Mechanical Stability and Degradation Kinetics of a Natural-Fiber Bio-Geosynthetic Composite from Typha domingensis and Boehmeria nivea under Accelerated Aging*. [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+Santos, L.D.V.; Holanda, F.S.R.; da Silva, E.G.; Azerêdo, A.J.S.; Rodrigues Júnior, J.J.; de Araújo Filho, R.N.; Sussuchi, E.M.; Pedrotti, A.; da Silva Filho, C.I. (2025). *Mechanical Stability and Degradation Kinetics of a Natural-Fiber Bio-Geosynthetic Composite from Typha domingensis and Boehmeria nivea under Accelerated Aging*. [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.18748157
