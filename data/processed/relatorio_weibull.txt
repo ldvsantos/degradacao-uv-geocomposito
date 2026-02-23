@@ -1,0 +1,66 @@
+================================================================================
+RELATÓRIO DE ANÁLISE WEIBULL - PROBABILIDADE DE RUPTURA
+================================================================================
+
+Data da análise: 2025-10-19 
+Número de variáveis analisadas: 3 
+Variáveis: Tensao_Tracao_MPa, Deformacao_Ruptura_Perc, Modulo_Young_GPa 
+Número total de amostras: 210 
+
+MÉTODOS IMPLEMENTADOS:
+- Distribuição Weibull 2P e 3P
+- Estimadores: Least Squares (LS) e Maximum Likelihood (ML)
+- Estimadores de probabilidade: Kaplan-Meier, Hazen, Mean Rank
+- Testes de adequação: Anderson-Darling, Kolmogorov-Smirnov
+- Análise ANOVA para grupos
+
+RESUMO DOS MELHORES AJUSTES:
+
+Tensao_Tracao_MPa:
+  Melhor método: weibull_2p_ls_km
+  Shape (m): 5.6983
+  Scale (σ0): 133.7074
+  R²: 0.9349
+  Valor para 50% sobrevivência: 125.3780
+
+Deformacao_Ruptura_Perc:
+  Melhor método: weibull_2p_ls_km
+  Shape (m): 4.3672
+  Scale (σ0): 2.8921
+  R²: 0.9583
+  Valor para 50% sobrevivência: 2.6593
+
+Modulo_Young_GPa:
+  Melhor método: weibull_2p_ls_km
+  Shape (m): 3.0085
+  Scale (σ0): 7.9155
+  R²: 0.9737
+  Valor para 50% sobrevivência: 7.0076
+
+================================================================================
+INTERPRETAÇÃO DOS RESULTADOS:
+================================================================================
+
+PARÂMETROS WEIBULL:
+- Shape (m): Define a forma da distribuição
+  * m < 1: Taxa de falha decrescente
+  * m = 1: Taxa de falha constante (distribuição exponencial)
+  * m > 1: Taxa de falha crescente (mais comum em materiais)
+
+- Scale (σ0): Parâmetro característico de escala
+  * Representa o valor onde ~63.2% das amostras falharam
+  * Maior σ0 indica maior resistência/durabilidade
+
+COEFICIENTE R²:
+- R² > 0.95: Excelente ajuste
+- R² > 0.90: Bom ajuste
+- R² < 0.90: Ajuste questionável
+
+RECOMENDAÇÕES BASEADAS NO ARTIGO E MÉTODOS APLICADOS:
+- Método Kaplan-Meier com LS mostrou melhor desempenho
+- Weibull 2P geralmente superior ao 3P para materiais homogêneos
+- GLM Gamma preferível à ANOVA clássica para dados não-normais
+- GEE recomendado para dados com correlação temporal/espacial
+- Validar com testes Anderson-Darling (p > 0.1 desejável)
+- Comparações múltiplas com correção de Tukey via emmeans
+

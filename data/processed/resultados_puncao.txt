@@ -1,0 +1,55 @@
+﻿Rscript.exe : Carregando pacotes exigidos: fitdistrplus
+No linha:1 caractere:168
++ ... TISTICAS" ; & "C:\Program Files\R\R-4.4.3\bin\Rscript.exe" "scripts_p ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Carregando paco...s: fitdistrplus:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Carregando pacotes exigidos: MASS
+Carregando pacotes exigidos: survival
+
+Anexando pacote: 'dplyr'
+
+O seguinte objeto ├® mascarado por 'package:MASS':
+
+    select
+
+Os seguintes objetos s├úo mascarados por 'package:stats':
+
+    filter, lag
+
+Os seguintes objetos s├úo mascarados por 'package:base':
+
+    intersect, setdiff, setequal, union
+
+Carregando pacotes exigidos: viridisLite
+=== AN├üLISE DE WEIBULL PARA PUN├ç├âO ===
+
+=== AN├üLISE DE WEIBULL - FOR├çA DE PUN├ç├âO ===
+Par├ómetros da distribui├º├úo de Weibull - For├ºa de Pun├º├úo:
+Forma (╬▓): 4.4625 
+Escala (╬À): 1784.193 
+Vida m├®dia: 1627.42 N
+Vida mediana: 1643.51 N
+P10 (10% de falha): 1077.54 N
+P90 (90% de falha): 2150.86 N
+
+=== AN├üLISE DE WEIBULL - DESLOCAMENTO NA PUN├ç├âO ===
+Par├ómetros da distribui├º├úo de Weibull - Deslocamento na Pun├º├úo:
+Forma (╬▓): 5.351 
+Escala (╬À): 13.618 
+Vida m├®dia: 12.55 mm
+Vida mediana: 12.72 mm
+P10 (10% de falha): 8.94 mm
+P90 (90% de falha): 15.91 mm
+Mensagen de aviso:
+Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+Ôä╣ Please use `linewidth` instead. 
+                Variavel Forma_Beta Escala_Eta Vida_Media Vida_Mediana
+1        For├ºa de Pun├º├úo   4.462466 1784.19303 1627.41549   1643.50943
+2 Deslocamento na Pun├º├úo   5.350959   13.61805   12.55254     12.71651
+          P10      P90
+1 1077.537523 2150.856
+2    8.942739   15.915
+
+=== AN├üLISE DE WEIBULL PARA PUN├ç├âO CONCLU├ìDA ===

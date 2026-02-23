@@ -1,0 +1,27 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Office temp
+~$*
+*.tmp
+
+# Large binary (keep .opju out)
+*.opju
+*.rar
+*.sav
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/

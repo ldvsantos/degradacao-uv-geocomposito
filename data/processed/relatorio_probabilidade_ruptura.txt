@@ -1,0 +1,145 @@
+================================================================================
+RELATÓRIO DE ANÁLISE DE PROBABILIDADE DE RUPTURA
+Geocompostos sob Degradação Forçada
+================================================================================
+
+Data da análise: 2025-10-19 
+Número de amostras: 150 
+Variáveis analisadas: Resistencia_Tracao_kN_m, Modulo_Rigidez_kN_m, Deformacao_Ruptura_Perc 
+Grupos avaliados: UV, Térmica, Química, Controle 
+
+METODOLOGIA:
+- Distribuição Weibull para análise de confiabilidade
+- Estimação por máxima verossimilhança (ML)
+- GLM Gamma para comparação entre grupos de exposição
+- GEE para dados com correlação temporal/espacial
+- Modelagem de degradação temporal
+- Estimativa de vida útil e probabilidade de falha
+- Comparações múltiplas com correção de Tukey
+
+RESULTADOS PRINCIPAIS:
+
+=== RESISTENCIA_TRACAO_KN_M ===
+Parâmetros Weibull:
+  - Shape (β): 3.4031
+  - Scale (η): 19.9259
+  - Interpretação: Material apresenta desgaste (taxa de falha crescente)
+
+Estatísticas de Confiabilidade:
+  - Vida média: 17.90 unidades
+  - Vida mediana (50% falha): 17.89 unidades
+  - 10% das amostras falham até: 10.29 unidades
+  - 90% das amostras falham até: 25.46 unidades
+
+Análise de Degradação:
+  - Melhor modelo: exponential
+
+Comparação entre Grupos (Weibull):
+  - UV: Shape=3.171, Scale=18.730, Vida Média=16.77
+  - Térmica: Shape=3.546, Scale=20.078, Vida Média=18.08
+  - Química: Shape=2.668, Scale=16.008, Vida Média=14.23
+  - Controle: Shape=8.791, Scale=23.732, Vida Média=22.45
+
+  Grupo mais resistente: Controle
+  Melhoria de desempenho: 1.6x em relação ao pior grupo
+
+Análise GLM Gamma:
+  - Diferença significativa entre grupos (p = 0.0000)
+
+Análise GEE:
+  - Correlação estimada (AR-1): 0.7727
+
+=== MODULO_RIGIDEZ_KN_M ===
+Parâmetros Weibull:
+  - Shape (β): 4.2101
+  - Scale (η): 333.6092
+  - Interpretação: Material apresenta desgaste (taxa de falha crescente)
+
+Estatísticas de Confiabilidade:
+  - Vida média: 303.27 unidades
+  - Vida mediana (50% falha): 305.80 unidades
+  - 10% das amostras falham até: 195.48 unidades
+  - 90% das amostras falham até: 406.70 unidades
+
+Análise de Degradação:
+  - Melhor modelo: exponential
+
+Comparação entre Grupos (Weibull):
+  - UV: Shape=4.087, Scale=314.171, Vida Média=285.12
+  - Térmica: Shape=4.825, Scale=317.737, Vida Média=291.13
+  - Química: Shape=3.218, Scale=303.821, Vida Média=272.19
+  - Controle: Shape=7.870, Scale=386.872, Vida Média=364.04
+
+  Grupo mais resistente: Controle
+  Melhoria de desempenho: 1.3x em relação ao pior grupo
+
+Análise GLM Gamma:
+  - Diferença significativa entre grupos (p = 0.0000)
+
+Análise GEE:
+  - Correlação estimada (AR-1): 0.6964
+
+=== DEFORMACAO_RUPTURA_PERC ===
+Parâmetros Weibull:
+  - Shape (β): 2.6402
+  - Scale (η): 23.4648
+  - Interpretação: Material apresenta desgaste (taxa de falha crescente)
+
+Estatísticas de Confiabilidade:
+  - Vida média: 20.85 unidades
+  - Vida mediana (50% falha): 20.42 unidades
+  - 10% das amostras falham até: 10.01 unidades
+  - 90% das amostras falham até: 32.18 unidades
+
+Análise de Degradação:
+  - Melhor modelo: linear
+  - Tempo até falha estimado: -36.4 dias
+
+Comparação entre Grupos (Weibull):
+  - UV: Shape=2.696, Scale=25.880, Vida Média=23.01
+  - Térmica: Shape=3.271, Scale=22.915, Vida Média=20.55
+  - Química: Shape=2.910, Scale=27.866, Vida Média=24.85
+  - Controle: Shape=6.512, Scale=16.006, Vida Média=14.92
+
+  Grupo mais resistente: Química
+  Melhoria de desempenho: 1.7x em relação ao pior grupo
+
+Análise GLM Gamma:
+  - Diferença significativa entre grupos (p = 0.0000)
+
+Análise GEE:
+  - Correlação estimada (AR-1): 0.7874
+
+INTERPRETAÇÃO E RECOMENDAÇÕES:
+
+1. PARÂMETROS WEIBULL:
+   - Shape (β) > 1: Indica desgaste progressivo, típico de degradação
+   - Scale (η): Valor característico onde ~63.2% das amostras falham
+   - Maior Scale indica maior resistência/durabilidade
+
+2. PROBABILIDADE DE RUPTURA:
+   - Use as curvas de confiabilidade para estimar risco ao longo do tempo
+   - Vida mediana fornece estimativa conservadora de desempenho
+   - Considere P10 para aplicações críticas
+
+3. COMPARAÇÃO ENTRE GRUPOS (GLM/GEE):
+   - GLM Gamma identifica diferenças significativas entre grupos
+   - GEE apropriado para dados com correlação temporal
+   - Comparações múltiplas com correção de Tukey
+   - Identifique condições mais agressivas pelos menores valores de Scale
+   - Use grupo de melhor desempenho como referência de qualidade
+   - Considere fatores de segurança baseados na variabilidade observada
+
+4. APLICAÇÃO PRÁTICA:
+   - Estabeleça critérios de falha baseados em percentis (ex: P10)
+   - Monitore degradação usando modelos temporais ajustados
+   - Implemente manutenção preventiva com base nas curvas de confiabilidade
+   - Use análise comparativa para otimizar condições de serviço
+
+ARQUIVOS GERADOS:
+- probabilidade_ruptura_resultados.RData: Dados completos da análise
+- relatorio_probabilidade_ruptura.txt: Este relatório
+- Gráficos PNG: Curvas de confiabilidade e análises por variável
+- comparacao_confiabilidade_grupos.png: Comparação entre grupos
+
+================================================================================

@@ -1,0 +1,804 @@
+﻿=== WEIBULL PROBABILITY OF FAILURE ANALYSIS ===
+
+Carregando bibliotecas...
+Rscript.exe : Carregando pacotes exigidos: survival
+No linha:1 caractere:168
++ ... TISTICAS" ; & "C:\Program Files\R\R-4.4.3\bin\Rscript.exe" "scripts_t ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Carregando pacotes exigidos: survival:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Carregando pacotes exigidos: WeibullR
+Carregando pacotes exigidos: fitdistrplus
+Carregando pacotes exigidos: MASS
+Carregando pacotes exigidos: goftest
+Carregando pacotes exigidos: ggplot2
+Carregando pacotes exigidos: gridExtra
+Carregando pacotes exigidos: dplyr
+
+Anexando pacote: 'dplyr'
+
+O seguinte objeto ├® mascarado por 'package:gridExtra':
+
+    combine
+
+O seguinte objeto ├® mascarado por 'package:MASS':
+
+    select
+
+Os seguintes objetos s├úo mascarados por 'package:stats':
+
+    filter, lag
+
+Os seguintes objetos s├úo mascarados por 'package:base':
+
+    intersect, setdiff, setequal, union
+
+Carregando pacotes exigidos: readxl
+Carregando pacotes exigidos: nortest
+
+Anexando pacote: 'nortest'
+
+Os seguintes objetos s├úo mascarados por 'package:goftest':
+
+    ad.test, cvm.test
+
+Carregando pacotes exigidos: geepack
+Carregando pacotes exigidos: car
+Carregando pacotes exigidos: carData
+
+Anexando pacote: 'car'
+
+O seguinte objeto ├® mascarado por 'package:dplyr':
+
+    recode
+
+Carregando pacotes exigidos: emmeans
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+Carregando pacotes exigidos: multcomp
+Carregando pacotes exigidos: mvtnorm
+Carregando pacotes exigidos: TH.data
+
+Anexando pacote: 'TH.data'
+
+O seguinte objeto ├® mascarado por 'package:MASS':
+
+    geyser
+
+Carregando dados...
+Arquivo DB.xlsx n├úo encontrado. Gerando dados simulados...
+
+Estrutura dos dados:
+'data.frame':	210 obs. of  6 variables:
+ $ ID                     : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Grupo                  : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Tensao_Tracao_MPa      : num  106 157 80 125 174 ...
+ $ Deformacao_Ruptura_Perc: num  3.07 3.34 2.14 3.35 3.11 ...
+ $ Modulo_Young_GPa       : num  4.81 9.23 9.22 3.51 8.63 ...
+ $ Tempo_Degradacao_Dias  : num  110 100 120 0 120 80 80 110 20 30 ...
+
+Primeiras linhas:
+  ID Grupo Tensao_Tracao_MPa Deformacao_Ruptura_Perc Modulo_Young_GPa
+1  1     1         106.39411                3.072961         4.807347
+2  2     1         156.70435                3.341078         9.228129
+3  3     1          80.04369                2.135967         9.220225
+4  4     1         124.84409                3.351092         3.505973
+5  5     1         174.02685                3.110060         8.634400
+6  6     1         134.34969                1.645535         7.384620
+  Tempo_Degradacao_Dias
+1                   110
+2                   100
+3                   120
+4                     0
+5                   120
+6                    80
+
+=== AN├üLISE EXPLORAT├ôRIA ===
+
+Estat├¡sticas descritivas:
+       ID             Grupo   Tensao_Tracao_MPa Deformacao_Ruptura_Perc
+ Min.   :  1.00   Min.   :1   Min.   : 66.88    Min.   :1.227          
+ 1st Qu.: 53.25   1st Qu.:2   1st Qu.:106.14    1st Qu.:2.126          
+ Median :105.50   Median :4   Median :119.89    Median :2.631          
+ Mean   :105.50   Mean   :4   Mean   :123.73    Mean   :2.638          
+ 3rd Qu.:157.75   3rd Qu.:6   3rd Qu.:138.53    3rd Qu.:3.103          
+ Max.   :210.00   Max.   :7   Max.   :209.63    Max.   :5.355          
+ Modulo_Young_GPa Tempo_Degradacao_Dias
+ Min.   : 1.908   Min.   :  0.00       
+ 1st Qu.: 5.110   1st Qu.: 20.00       
+ Median : 6.695   Median : 50.00       
+ Mean   : 7.098   Mean   : 57.19       
+ 3rd Qu.: 9.044   3rd Qu.: 90.00       
+ Max.   :20.238   Max.   :120.00       
+
+Vari├íveis selecionadas para an├ílise Weibull:
+Tensao_Tracao_MPa, Deformacao_Ruptura_Perc, Modulo_Young_GPa 
+
+=== AN├üLISE WEIBULL ===
+
+--- Analisando vari├ível: Tensao_Tracao_MPa ---
+N = 210 amostras v├ílidas
+M├®dia: 123.730 | Desvio: 26.905
+Min: 66.878 | Max: 209.630
+
+Ajuste Weibull 2P - LS (Kaplan-Meier):
+  Shape (m): 5.698 | Scale (¤â0): 133.707 | R┬▓: 0.9349
+
+Ajuste Weibull 2P - LS (Hazen):
+  Shape (m): 5.758 | Scale (¤â0): 133.652 | R┬▓: 0.9309
+
+Ajuste Weibull 2P - ML:
+Erro no ajuste ML: Fixed parameter values must be a named list (or a function returning a named list). 
+
+Ajuste Weibull 3P - ML:
+Erro no ajuste ML: 'fix.arg' must specify names which are arguments to 'distr'. 
+
+--- Testes de Adequa├º├úo ---
+Melhor ajuste: weibull_2p_ls_km (R┬▓ = 0.9349)
+Anderson-Darling: Estat├¡stica = 3.5021, p-valor = 0.0000
+Kolmogorov-Smirnov: Estat├¡stica = 0.0996, p-valor = 0.0309
+
+--- An├ílise de Probabilidade ---
+Valor para 50% de sobreviv├¬ncia: 125.378
+Valor para 90% de sobreviv├¬ncia: 154.782
+Valor para 10% de sobreviv├¬ncia: 90.083
+
+--- Analisando vari├ível: Deformacao_Ruptura_Perc ---
+N = 210 amostras v├ílidas
+M├®dia: 2.638 | Desvio: 0.736
+Min: 1.227 | Max: 5.355
+
+Ajuste Weibull 2P - LS (Kaplan-Meier):
+  Shape (m): 4.367 | Scale (¤â0): 2.892 | R┬▓: 0.9583
+
+Ajuste Weibull 2P - LS (Hazen):
+  Shape (m): 4.412 | Scale (¤â0): 2.891 | R┬▓: 0.9538
+
+Ajuste Weibull 2P - ML:
+Erro no ajuste ML: Fixed parameter values must be a named list (or a function returning a named list). 
+
+Ajuste Weibull 3P - ML:
+Erro no ajuste ML: 'fix.arg' must specify names which are arguments to 'distr'. 
+
+--- Testes de Adequa├º├úo ---
+Melhor ajuste: weibull_2p_ls_km (R┬▓ = 0.9583)
+Anderson-Darling: Estat├¡stica = 2.9666, p-valor = 0.0000
+Kolmogorov-Smirnov: Estat├¡stica = 0.0581, p-valor = 0.4774
+
+--- An├ílise de Probabilidade ---
+Valor para 50% de sobreviv├¬ncia: 2.659
+Valor para 90% de sobreviv├¬ncia: 3.501
+Valor para 10% de sobreviv├¬ncia: 1.728
+
+--- Analisando vari├ível: Modulo_Young_GPa ---
+N = 210 amostras v├ílidas
+M├®dia: 7.098 | Desvio: 2.846
+Min: 1.908 | Max: 20.238
+
+Ajuste Weibull 2P - LS (Kaplan-Meier):
+  Shape (m): 3.009 | Scale (¤â0): 7.915 | R┬▓: 0.9737
+
+Ajuste Weibull 2P - LS (Hazen):
+  Shape (m): 3.042 | Scale (¤â0): 7.908 | R┬▓: 0.9705
+
+Ajuste Weibull 2P - ML:
+Erro no ajuste ML: Fixed parameter values must be a named list (or a function returning a named list). 
+
+Ajuste Weibull 3P - ML:
+Erro no ajuste ML: 'fix.arg' must specify names which are arguments to 'distr'. 
+
+--- Testes de Adequa├º├úo ---
+Melhor ajuste: weibull_2p_ls_km (R┬▓ = 0.9737)
+Anderson-Darling: Estat├¡stica = 3.6025, p-valor = 0.0000
+Kolmogorov-Smirnov: Estat├¡stica = 0.0870, p-valor = 0.0831
+
+--- An├ílise de Probabilidade ---
+Valor para 50% de sobreviv├¬ncia: 7.008
+Valor para 90% de sobreviv├¬ncia: 10.444
+Valor para 10% de sobreviv├¬ncia: 3.746
+
+=== AN├üLISE GLM/GEE WEIBULL POR GRUPOS ===
+Analisando grupos da vari├ível: Grupo
+
+--- An├ílise GLM/GEE Weibull para Tensao_Tracao_MPa ---
+
+Estat├¡sticas por grupo:
+# A tibble: 7 ├ù 7
+  grupo     n media desvio min_val max_val    cv
+  <fct> <int> <dbl>  <dbl>   <dbl>   <dbl> <dbl>
+1 1        30  120.   25.2    79.2    174.  21.0
+2 2        30  121.   25.9    83.1    189.  21.5
+3 3        30  125.   20.9    90.4    176.  16.7
+4 4        30  131.   26.4    81.9    187.  20.2
+5 5        30  117.   29.1    66.9    204.  24.8
+6 6        30  129.   31.4    86.6    210.  24.3
+7 7        30  123.   28.0    80.9    194.  22.9
+
+--- Modelo GLM Gamma ---
+
+Resumo do modelo GLM Gamma:
+
+Call:
+glm(formula = valor ~ grupo, family = Gamma(link = "log"), data = group_data)
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  4.790603   0.039755 120.502   <2e-16 ***
+grupo2       0.001185   0.056222   0.021    0.983    
+grupo3       0.039110   0.056222   0.696    0.487    
+grupo4       0.081713   0.056222   1.453    0.148    
+grupo5      -0.024992   0.056222  -0.445    0.657    
+grupo6       0.072504   0.056222   1.290    0.199    
+grupo7       0.018271   0.056222   0.325    0.746    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for Gamma family taken to be 0.0474144)
+
+    Null deviance: 9.6004  on 209  degrees of freedom
+Residual deviance: 9.3180  on 203  degrees of freedom
+AIC: 1973.3
+
+Number of Fisher Scoring iterations: 4
+
+
+An├ílise de Deviance (Anova tipo II):
+Analysis of Deviance Table (Type II tests)
+
+Response: valor
+      LR Chisq Df Pr(>Chisq)
+grupo   5.9557  6     0.4282
+
+======================================================================
+RESULTADO GLM FORMATADO PARA APRESENTA├ç├âO:
+====================================================================== 
+Interpreta├º├úo: n├úo significativo (ns)
+====================================================================== 
+
+
+Compara├º├Áes m├║ltiplas (emmeans):
+ grupo response   SE  df lower.CL upper.CL
+ 1          120 4.79 203      111      130
+ 2          121 4.79 203      111      130
+ 3          125 4.98 203      116      135
+ 4          131 5.19 203      121      141
+ 5          117 4.67 203      109      127
+ 6          129 5.15 203      120      140
+ 7          123 4.87 203      113      133
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log scale 
+
+Compara├º├Áes par-a-par (Tukey):
+ contrast        ratio     SE  df null t.ratio p.value
+ grupo1 / grupo2 0.999 0.0562 203    1  -0.021  1.0000
+ grupo1 / grupo3 0.962 0.0541 203    1  -0.696  0.9927
+ grupo1 / grupo4 0.922 0.0518 203    1  -1.453  0.7718
+ grupo1 / grupo5 1.025 0.0576 203    1   0.445  0.9994
+ grupo1 / grupo6 0.930 0.0523 203    1  -1.290  0.8561
+ grupo1 / grupo7 0.982 0.0552 203    1  -0.325  0.9999
+ grupo2 / grupo3 0.963 0.0541 203    1  -0.675  0.9938
+ grupo2 / grupo4 0.923 0.0519 203    1  -1.432  0.7837
+ grupo2 / grupo5 1.027 0.0577 203    1   0.466  0.9992
+ grupo2 / grupo6 0.931 0.0524 203    1  -1.269  0.8655
+ grupo2 / grupo7 0.983 0.0553 203    1  -0.304  0.9999
+ grupo3 / grupo4 0.958 0.0539 203    1  -0.758  0.9885
+ grupo3 / grupo5 1.066 0.0599 203    1   1.140  0.9149
+ grupo3 / grupo6 0.967 0.0544 203    1  -0.594  0.9969
+ grupo3 / grupo7 1.021 0.0574 203    1   0.371  0.9998
+ grupo4 / grupo5 1.113 0.0626 203    1   1.898  0.4841
+ grupo4 / grupo6 1.009 0.0567 203    1   0.164  1.0000
+ grupo4 / grupo7 1.065 0.0599 203    1   1.128  0.9187
+ grupo5 / grupo6 0.907 0.0510 203    1  -1.734  0.5940
+ grupo5 / grupo7 0.958 0.0538 203    1  -0.770  0.9876
+ grupo6 / grupo7 1.056 0.0594 203    1   0.965  0.9609
+
+P value adjustment: tukey method for comparing a family of 7 estimates 
+Tests are performed on the log scale 
+
+Diagn├│sticos do modelo:
+  AIC: 1973.327
+  Deviance residual: 9.318
+  Graus de liberdade: 203
+
+  Teste de adequa├º├úo da distribui├º├úo Gamma:
+  M├®dia dos res├¡duos de Pearson: -0.0000
+  Desvio padr├úo dos res├¡duos: 0.2146
+  Shapiro-Wilk (res├¡duos): W=0.9701, p=0.0002
+
+--- Modelo GEE (se aplic├ível) ---
+
+Resumo do modelo GEE:
+
+Call:
+geeglm(formula = valor ~ grupo, family = Gamma(link = "log"), 
+    data = group_data, id = id, corstr = "ar1")
+
+ Coefficients:
+             Estimate   Std.err      Wald Pr(>|W|)    
+(Intercept)  4.790071  0.023910 40133.531   <2e-16 ***
+grupo2       0.002031  0.033502     0.004   0.9517    
+grupo3       0.039442  0.032764     1.449   0.2287    
+grupo4       0.084073  0.041523     4.100   0.0429 *  
+grupo5      -0.025522  0.050531     0.255   0.6135    
+grupo6       0.071853  0.041889     2.942   0.0863 .  
+grupo7       0.018600  0.059837     0.097   0.7559    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation structure = ar1 
+Estimated Scale Parameters:
+
+            Estimate  Std.err
+(Intercept)  0.04586 0.004593
+  Link = identity 
+
+Estimated Correlation Parameters:
+      Estimate Std.err
+alpha  0.02994  0.0627
+Number of clusters:   30  Maximum cluster size: 7 
+
+Teste de Wald:
+Analysis of 'Wald statistic' Table
+Model: Gamma, link: log
+Response: valor
+Terms added sequentially (first to last)
+
+      Df   X2 P(>|Chi|)
+grupo  6 8.32      0.22
+
+Par├ómetros de correla├º├úo:
+  Correla├º├úo estimada (AR-1): 0.0299
+
+--- Par├ómetros Weibull por Grupo ---
+Grupo 1: Shape=5.453, Scale=130.346, R┬▓=0.9574
+Grupo 2: Shape=5.518, Scale=130.475, R┬▓=0.8917
+Grupo 3: Shape=7.005, Scale=133.732, R┬▓=0.8901
+Grupo 4: Shape=5.647, Scale=141.123, R┬▓=0.9776
+Grupo 5: Shape=4.815, Scale=128.060, R┬▓=0.9249
+Grupo 6: Shape=4.874, Scale=141.170, R┬▓=0.8888
+Grupo 7: Shape=5.114, Scale=133.282, R┬▓=0.9203
+
+--- An├ílise Estat├¡stica dos Par├ómetros Weibull ---
+Variabilidade do Shape (m): CV = 13.51%
+Variabilidade do Scale (¤â0): CV = 3.90%
+
+Teste estat├¡stico para Shape (par├ómetro de forma):
+  An├ílise de Deviance para Shape:
+Analysis of Deviance Table (Type II tests)
+
+Response: shape
+      LR Chisq Df Pr(>Chisq)
+grupo      NaN  6        NaN
+  Erro na an├ílise GLM para Shape: valor ausente onde TRUE/FALSE necess├írio 
+
+Teste estat├¡stico para Scale (par├ómetro de escala):
+  An├ílise de Deviance para Scale:
+Analysis of Deviance Table (Type II tests)
+
+Response: scale
+      LR Chisq Df Pr(>Chisq)
+grupo      NaN  6        NaN
+  Erro na an├ílise GLM para Scale: valor ausente onde TRUE/FALSE necess├írio 
+
+Tabela resumo dos par├ómetros Weibull por grupo:
+             grupo shape scale r_squared
+(Intercept)      1 5.453 130.3    0.9574
+(Intercept)1     2 5.518 130.5    0.8917
+(Intercept)2     3 7.005 133.7    0.8901
+(Intercept)3     4 5.647 141.1    0.9776
+(Intercept)4     5 4.815 128.1    0.9249
+(Intercept)5     6 4.874 141.2    0.8888
+(Intercept)6     7 5.114 133.3    0.9203
+
+--- An├ílise GLM/GEE Weibull para Deformacao_Ruptura_Perc ---
+
+Estat├¡sticas por grupo:
+# A tibble: 7 ├ù 7
+  grupo     n media desvio min_val max_val    cv
+  <fct> <int> <dbl>  <dbl>   <dbl>   <dbl> <dbl>
+1 1        30  2.65  0.699    1.32    4.04  26.4
+2 2        30  2.65  0.744    1.47    4.01  28.1
+3 3        30  2.54  0.778    1.33    5.36  30.6
+4 4        30  2.63  0.610    1.51    4.20  23.2
+5 5        30  2.67  0.822    1.23    4.59  30.8
+6 6        30  2.81  0.811    1.56    5.17  28.8
+7 7        30  2.52  0.700    1.30    4.50  27.8
+
+--- Modelo GLM Gamma ---
+
+Resumo do modelo GLM Gamma:
+
+Call:
+glm(formula = valor ~ grupo, family = Gamma(link = "log"), data = group_data)
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.97454    0.05125   19.02   <2e-16 ***
+grupo2      -0.00130    0.07247   -0.02     0.99    
+grupo3      -0.04309    0.07247   -0.59     0.55    
+grupo4      -0.00848    0.07247   -0.12     0.91    
+grupo5       0.00785    0.07247    0.11     0.91    
+grupo6       0.05895    0.07247    0.81     0.42    
+grupo7      -0.05036    0.07247   -0.69     0.49    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for Gamma family taken to be 0.07879)
+
+    Null deviance: 16.347  on 209  degrees of freedom
+Residual deviance: 16.111  on 203  degrees of freedom
+AIC: 466.5
+
+Number of Fisher Scoring iterations: 4
+
+
+An├ílise de Deviance (Anova tipo II):
+Analysis of Deviance Table (Type II tests)
+
+Response: valor
+      LR Chisq Df Pr(>Chisq)
+grupo     2.99  6       0.81
+
+======================================================================
+RESULTADO GLM FORMATADO PARA APRESENTA├ç├âO:
+====================================================================== 
+Interpreta├º├úo: n├úo significativo (ns)
+====================================================================== 
+
+
+Compara├º├Áes m├║ltiplas (emmeans):
+ grupo response    SE  df lower.CL upper.CL
+ 1         2.65 0.136 203     2.40     2.93
+ 2         2.65 0.136 203     2.39     2.93
+ 3         2.54 0.130 203     2.29     2.81
+ 4         2.63 0.135 203     2.38     2.91
+ 5         2.67 0.137 203     2.41     2.95
+ 6         2.81 0.144 203     2.54     3.11
+ 7         2.52 0.129 203     2.28     2.79
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log scale 
+
+Compara├º├Áes par-a-par (Tukey):
+ contrast        ratio     SE  df null t.ratio p.value
+ grupo1 / grupo2 1.001 0.0726 203    1   0.018  1.0000
+ grupo1 / grupo3 1.044 0.0757 203    1   0.595  0.9969
+ grupo1 / grupo4 1.008 0.0731 203    1   0.117  1.0000
+ grupo1 / grupo5 0.992 0.0719 203    1  -0.108  1.0000
+ grupo1 / grupo6 0.943 0.0683 203    1  -0.813  0.9834
+ grupo1 / grupo7 1.052 0.0762 203    1   0.695  0.9928
+ grupo2 / grupo3 1.043 0.0756 203    1   0.577  0.9974
+ grupo2 / grupo4 1.007 0.0730 203    1   0.099  1.0000
+ grupo2 / grupo5 0.991 0.0718 203    1  -0.126  1.0000
+ grupo2 / grupo6 0.942 0.0682 203    1  -0.831  0.9814
+ grupo2 / grupo7 1.050 0.0761 203    1   0.677  0.9937
+ grupo3 / grupo4 0.966 0.0700 203    1  -0.478  0.9991
+ grupo3 / grupo5 0.950 0.0689 203    1  -0.703  0.9923
+ grupo3 / grupo6 0.903 0.0654 203    1  -1.408  0.7971
+ grupo3 / grupo7 1.007 0.0730 203    1   0.100  1.0000
+ grupo4 / grupo5 0.984 0.0713 203    1  -0.225  1.0000
+ grupo4 / grupo6 0.935 0.0678 203    1  -0.930  0.9673
+ grupo4 / grupo7 1.043 0.0756 203    1   0.578  0.9974
+ grupo5 / grupo6 0.950 0.0689 203    1  -0.705  0.9922
+ grupo5 / grupo7 1.060 0.0768 203    1   0.803  0.9844
+ grupo6 / grupo7 1.115 0.0808 203    1   1.508  0.7397
+
+P value adjustment: tukey method for comparing a family of 7 estimates 
+Tests are performed on the log scale 
+
+Diagn├│sticos do modelo:
+  AIC: 466.452
+  Deviance residual: 16.111
+  Graus de liberdade: 203
+
+  Teste de adequa├º├úo da distribui├º├úo Gamma:
+  M├®dia dos res├¡duos de Pearson: -0.0000
+  Desvio padr├úo dos res├¡duos: 0.2766
+  Shapiro-Wilk (res├¡duos): W=0.9768, p=0.0015
+
+--- Modelo GEE (se aplic├ível) ---
+
+Resumo do modelo GEE:
+
+Call:
+geeglm(formula = valor ~ grupo, family = Gamma(link = "log"), 
+    data = group_data, id = id, corstr = "ar1")
+
+ Coefficients:
+            Estimate  Std.err   Wald Pr(>|W|)    
+(Intercept)  0.97217  0.05134 358.57   <2e-16 ***
+grupo2       0.00359  0.05941   0.00     0.95    
+grupo3      -0.03819  0.11266   0.11     0.73    
+grupo4      -0.00648  0.05412   0.01     0.90    
+grupo5       0.01118  0.09282   0.01     0.90    
+grupo6       0.05806  0.05937   0.96     0.33    
+grupo7      -0.04584  0.06439   0.51     0.48    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation structure = ar1 
+Estimated Scale Parameters:
+
+            Estimate Std.err
+(Intercept)   0.0761 0.00769
+  Link = identity 
+
+Estimated Correlation Parameters:
+      Estimate Std.err
+alpha   0.0884  0.0655
+Number of clusters:   30  Maximum cluster size: 7 
+
+Teste de Wald:
+Analysis of 'Wald statistic' Table
+Model: Gamma, link: log
+Response: valor
+Terms added sequentially (first to last)
+
+      Df   X2 P(>|Chi|)
+grupo  6 5.06      0.54
+
+Par├ómetros de correla├º├úo:
+  Correla├º├úo estimada (AR-1): 0.0884
+
+--- Par├ómetros Weibull por Grupo ---
+Grupo 1: Shape=4.265, Scale=2.911, R┬▓=0.9809
+Grupo 2: Shape=3.763, Scale=2.937, R┬▓=0.9304
+Grupo 3: Shape=4.045, Scale=2.796, R┬▓=0.9154
+Grupo 4: Shape=4.856, Scale=2.865, R┬▓=0.9641
+Grupo 5: Shape=3.660, Scale=2.960, R┬▓=0.9781
+Grupo 6: Shape=4.176, Scale=3.090, R┬▓=0.9298
+Grupo 7: Shape=4.251, Scale=2.767, R┬▓=0.9581
+
+--- An├ílise Estat├¡stica dos Par├ómetros Weibull ---
+Variabilidade do Shape (m): CV = 9.47%
+Variabilidade do Scale (¤â0): CV = 3.75%
+
+Teste estat├¡stico para Shape (par├ómetro de forma):
+  An├ílise de Deviance para Shape:
+Analysis of Deviance Table (Type II tests)
+
+Response: shape
+      LR Chisq Df Pr(>Chisq)
+grupo      NaN  6        NaN
+  Erro na an├ílise GLM para Shape: valor ausente onde TRUE/FALSE necess├írio 
+
+Teste estat├¡stico para Scale (par├ómetro de escala):
+  An├ílise de Deviance para Scale:
+Analysis of Deviance Table (Type II tests)
+
+Response: scale
+      LR Chisq Df Pr(>Chisq)
+grupo      NaN  6        NaN
+  Erro na an├ílise GLM para Scale: valor ausente onde TRUE/FALSE necess├írio 
+
+Tabela resumo dos par├ómetros Weibull por grupo:
+             grupo shape scale r_squared
+(Intercept)      1  4.26  2.91     0.981
+(Intercept)1     2  3.76  2.94     0.930
+(Intercept)2     3  4.04  2.80     0.915
+(Intercept)3     4  4.86  2.87     0.964
+(Intercept)4     5  3.66  2.96     0.978
+(Intercept)5     6  4.18  3.09     0.930
+(Intercept)6     7  4.25  2.77     0.958
+
+--- An├ílise GLM/GEE Weibull para Modulo_Young_GPa ---
+
+Estat├¡sticas por grupo:
+# A tibble: 7 ├ù 7
+  grupo     n media desvio min_val max_val    cv
+  <fct> <int> <dbl>  <dbl>   <dbl>   <dbl> <dbl>
+1 1        30  6.82   2.31    3.02    11.8  33.8
+2 2        30  7.75   3.21    2.59    15.1  41.4
+3 3        30  7.00   2.53    2.26    13.6  36.1
+4 4        30  6.79   2.21    3.19    12.4  32.5
+5 5        30  7.59   3.78    2.25    20.2  49.9
+6 6        30  6.76   2.77    1.91    13.2  41.0
+7 7        30  6.98   2.92    2.20    12.0  41.8
+
+--- Modelo GLM Gamma ---
+
+Resumo do modelo GLM Gamma:
+
+Call:
+glm(formula = valor ~ grupo, family = Gamma(link = "log"), data = group_data)
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  1.91993    0.07281   26.37   <2e-16 ***
+grupo2       0.12784    0.10297    1.24     0.22    
+grupo3       0.02655    0.10297    0.26     0.80    
+grupo4      -0.00492    0.10297   -0.05     0.96    
+grupo5       0.10647    0.10297    1.03     0.30    
+grupo6      -0.00917    0.10297   -0.09     0.93    
+grupo7       0.02270    0.10297    0.22     0.83    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for Gamma family taken to be 0.159)
+
+    Null deviance: 34.078  on 209  degrees of freedom
+Residual deviance: 33.511  on 203  degrees of freedom
+AIC: 1021
+
+Number of Fisher Scoring iterations: 4
+
+
+An├ílise de Deviance (Anova tipo II):
+Analysis of Deviance Table (Type II tests)
+
+Response: valor
+      LR Chisq Df Pr(>Chisq)
+grupo     3.56  6       0.74
+
+======================================================================
+RESULTADO GLM FORMATADO PARA APRESENTA├ç├âO:
+====================================================================== 
+Interpreta├º├úo: n├úo significativo (ns)
+====================================================================== 
+
+
+Compara├º├Áes m├║ltiplas (emmeans):
+ grupo response    SE  df lower.CL upper.CL
+ 1         6.82 0.497 203     5.91     7.87
+ 2         7.75 0.564 203     6.71     8.95
+ 3         7.00 0.510 203     6.07     8.09
+ 4         6.79 0.494 203     5.88     7.83
+ 5         7.59 0.552 203     6.57     8.76
+ 6         6.76 0.492 203     5.85     7.80
+ 7         6.98 0.508 203     6.04     8.05
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log scale 
+
+Compara├º├Áes par-a-par (Tukey):
+ contrast        ratio     SE  df null t.ratio p.value
+ grupo1 / grupo2 0.880 0.0906 203    1  -1.241  0.8770
+ grupo1 / grupo3 0.974 0.1000 203    1  -0.258  1.0000
+ grupo1 / grupo4 1.005 0.1040 203    1   0.048  1.0000
+ grupo1 / grupo5 0.899 0.0926 203    1  -1.034  0.9460
+ grupo1 / grupo6 1.009 0.1040 203    1   0.089  1.0000
+ grupo1 / grupo7 0.978 0.1010 203    1  -0.220  1.0000
+ grupo2 / grupo3 1.107 0.1140 203    1   0.984  0.9570
+ grupo2 / grupo4 1.142 0.1180 203    1   1.289  0.8560
+ grupo2 / grupo5 1.022 0.1050 203    1   0.207  1.0000
+ grupo2 / grupo6 1.147 0.1180 203    1   1.331  0.8370
+ grupo2 / grupo7 1.111 0.1140 203    1   1.021  0.9490
+ grupo3 / grupo4 1.032 0.1060 203    1   0.306  1.0000
+ grupo3 / grupo5 0.923 0.0951 203    1  -0.776  0.9870
+ grupo3 / grupo6 1.036 0.1070 203    1   0.347  1.0000
+ grupo3 / grupo7 1.004 0.1030 203    1   0.037  1.0000
+ grupo4 / grupo5 0.895 0.0921 203    1  -1.082  0.9330
+ grupo4 / grupo6 1.004 0.1030 203    1   0.041  1.0000
+ grupo4 / grupo7 0.973 0.1000 203    1  -0.268  1.0000
+ grupo5 / grupo6 1.123 0.1160 203    1   1.123  0.9200
+ grupo5 / grupo7 1.087 0.1120 203    1   0.814  0.9830
+ grupo6 / grupo7 0.969 0.0997 203    1  -0.310  1.0000
+
+P value adjustment: tukey method for comparing a family of 7 estimates 
+Tests are performed on the log scale 
+
+Diagn├│sticos do modelo:
+  AIC: 1021.165
+  Deviance residual: 33.511
+  Graus de liberdade: 203
+
+  Teste de adequa├º├úo da distribui├º├úo Gamma:
+  M├®dia dos res├¡duos de Pearson: -0.0000
+  Desvio padr├úo dos res├¡duos: 0.3930
+  Shapiro-Wilk (res├¡duos): W=0.9672, p=0.0001
+
+--- Modelo GEE (se aplic├ível) ---
+
+Resumo do modelo GEE:
+
+Call:
+geeglm(formula = valor ~ grupo, family = Gamma(link = "log"), 
+    data = group_data, id = id, corstr = "ar1")
+
+ Coefficients:
+            Estimate  Std.err    Wald Pr(>|W|)    
+(Intercept)  1.92055  0.03396 3198.96   <2e-16 ***
+grupo2       0.12580  0.07930    2.52     0.11    
+grupo3       0.03119  0.08824    0.12     0.72    
+grupo4      -0.00714  0.05458    0.02     0.90    
+grupo5       0.10726  0.08609    1.55     0.21    
+grupo6      -0.01505  0.04998    0.09     0.76    
+grupo7       0.02659  0.05458    0.24     0.63    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation structure = ar1 
+Estimated Scale Parameters:
+
+            Estimate Std.err
+(Intercept)    0.154  0.0166
+  Link = identity 
+
+Estimated Correlation Parameters:
+      Estimate Std.err
+alpha  -0.0976  0.0596
+Number of clusters:   30  Maximum cluster size: 7 
+
+Teste de Wald:
+Analysis of 'Wald statistic' Table
+Model: Gamma, link: log
+Response: valor
+Terms added sequentially (first to last)
+
+      Df   X2 P(>|Chi|)
+grupo  6 5.22      0.52
+
+Par├ómetros de correla├º├úo:
+  Correla├º├úo estimada (AR-1): -0.0976
+
+--- Par├ómetros Weibull por Grupo ---
+Grupo 1: Shape=3.329, Scale=7.597, R┬▓=0.9715
+Grupo 2: Shape=2.732, Scale=8.708, R┬▓=0.9641
+Grupo 3: Shape=3.023, Scale=7.851, R┬▓=0.9835
+Grupo 4: Shape=3.624, Scale=7.519, R┬▓=0.9581
+Grupo 5: Shape=2.354, Scale=8.552, R┬▓=0.9588
+Grupo 6: Shape=2.710, Scale=7.606, R┬▓=0.9761
+Grupo 7: Shape=2.576, Scale=7.870, R┬▓=0.9777
+
+--- An├ílise Estat├¡stica dos Par├ómetros Weibull ---
+Variabilidade do Shape (m): CV = 15.33%
+Variabilidade do Scale (¤â0): CV = 6.03%
+
+Teste estat├¡stico para Shape (par├ómetro de forma):
+  An├ílise de Deviance para Shape:
+Analysis of Deviance Table (Type II tests)
+
+Response: shape
+      LR Chisq Df Pr(>Chisq)
+grupo      NaN  6        NaN
+  Erro na an├ílise GLM para Shape: valor ausente onde TRUE/FALSE necess├írio 
+
+Teste estat├¡stico para Scale (par├ómetro de escala):
+  An├ílise de Deviance para Scale:
+Analysis of Deviance Table (Type II tests)
+
+Response: scale
+      LR Chisq Df Pr(>Chisq)
+grupo      NaN  6        NaN
+  Erro na an├ílise GLM para Scale: valor ausente onde TRUE/FALSE necess├írio 
+
+Tabela resumo dos par├ómetros Weibull por grupo:
+             grupo shape scale r_squared
+(Intercept)      1  3.33  7.60     0.972
+(Intercept)1     2  2.73  8.71     0.964
+(Intercept)2     3  3.02  7.85     0.984
+(Intercept)3     4  3.62  7.52     0.958
+(Intercept)4     5  2.35  8.55     0.959
+(Intercept)5     6  2.71  7.61     0.976
+(Intercept)6     7  2.58  7.87     0.978
+Mensagens de aviso:
+1: In dgamma(y, 1/disp, scale = mu * disp, log = TRUE) : NaNs produzidos
+2: In dgamma(y, 1/disp, scale = mu * disp, log = TRUE) : NaNs produzidos
+3: In dgamma(y, 1/disp, scale = mu * disp, log = TRUE) : NaNs produzidos
+4: In dgamma(y, 1/disp, scale = mu * disp, log = TRUE) : NaNs produzidos
+
+=== GERANDO GR├üFICOS ===
+Mensagen de aviso:
+Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+Ôä╣ Please use `linewidth` instead. 
+
+=== RELAT├ôRIO FINAL ===
+Resultados salvos em: resultados_analise_weibull.RData
+
+Relat├│rio detalhado salvo em: relatorio_weibull.txt
+
+=== AN├üLISE WEIBULL CONCLU├ìDA ===
+Arquivos gerados:
+- resultados_analise_weibull.RData (dados R)
+- relatorio_weibull.txt (relat├│rio detalhado)
+- curvas_probabilidade_weibull.png (gr├ífico de probabilidades)
+- qq_plot_weibull.png (Q-Q plot)
+
+Para an├ílise de probabilidade de ruptura espec├¡fica, consulte:
+- Valores caracter├¡sticos no relat├│rio
+- Curvas de sobreviv├¬ncia nos gr├íficos
+- Par├ómetros Weibull para cada propriedade
+

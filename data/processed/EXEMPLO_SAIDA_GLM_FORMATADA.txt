@@ -1,0 +1,98 @@
+=======================================================================
+EXEMPLO DE SAÍDA FORMATADA PARA APRESENTAÇÃO DE RESULTADOS GLM
+=======================================================================
+
+Os scripts foram atualizados para apresentar os resultados do GLM (Generalized Linear Model) no formato solicitado.
+
+=======================================================================
+FORMATO DE APRESENTAÇÃO
+=======================================================================
+
+GLM (Gamma, link log): χ²(df) = valor, p = valor
+
+Onde:
+- χ² = Qui-quadrado (estatística do teste)
+- df = Graus de liberdade
+- p = Valor-p (probabilidade)
+
+=======================================================================
+EXEMPLOS DE SAÍDA
+=======================================================================
+
+Exemplo 1 (Não significativo - como mencionado):
+----------------------------------------------------------------------
+GLM (Gamma, link log): χ²(11) = 17.84, p = 0.086
+Interpretação: p < 0.10 (marginalmente significativo)
+
+
+Exemplo 2 (Significativo):
+----------------------------------------------------------------------
+GLM (Gamma, link log): χ²(3) = 25.43, p = 0.001
+Interpretação: p < 0.01 (muito significativo)
+
+
+Exemplo 3 (Altamente significativo):
+----------------------------------------------------------------------
+GLM (Gamma, link log): χ²(5) = 45.67, p < 0.001
+Interpretação: p < 0.001 (altamente significativo)
+
+
+Exemplo 4 (Não significativo):
+----------------------------------------------------------------------
+GLM (Gamma, link log): χ²(2) = 3.21, p = 0.201
+Interpretação: não significativo (ns)
+
+=======================================================================
+SCRIPTS ATUALIZADOS
+=======================================================================
+
+1. scripts_tracao/ANALISE_WEIBULL.r
+   - Linha ~480: Formatação GLM adicionada
+   - Extrai automaticamente χ², df e p-valor do objeto Anova
+   - Apresenta interpretação automática baseada no p-valor
+
+2. scripts_puncao/TRACAO_PUNCAO.r
+   - Linha ~305: Formatação GLM adicionada
+   - Mesma lógica de extração e formatação
+
+=======================================================================
+INTERPRETAÇÕES AUTOMÁTICAS
+=======================================================================
+
+p < 0.001  → "altamente significativo"
+p < 0.01   → "muito significativo"
+p < 0.05   → "significativo"
+p < 0.10   → "marginalmente significativo"
+p ≥ 0.10   → "não significativo (ns)"
+
+=======================================================================
+CÓDIGO ADICIONADO
+=======================================================================
+
+# Análise de Deviance (Anova tipo II)
+anova_glm <- Anova(glm_model, type = "II")
+
+# Extrair estatísticas
+chi_sq <- anova_glm$Chisq[1]
+df <- anova_glm$Df[1]
+p_value <- anova_glm$`Pr(>Chisq)`[1]
+
+# Formatar resultado
+cat(sprintf("GLM (Gamma, link log): χ²(%d) = %.2f, p = %.3f\n", 
+            df, chi_sq, p_value))
+
+=======================================================================
+NOTA IMPORTANTE
+=======================================================================
+
+Os valores serão calculados automaticamente pelos dados reais quando
+você executar os scripts com seus dados experimentais. Os exemplos
+acima são ilustrativos.
+
+Para seus dados UV de tração, o resultado esperado é:
+GLM (Gamma, link log): χ²(11) = 17.84, p = 0.086
+
+Indicando que não há diferença significativa entre os grupos ao nível
+de 5%, mas é marginalmente significativo ao nível de 10%.
+
+=======================================================================

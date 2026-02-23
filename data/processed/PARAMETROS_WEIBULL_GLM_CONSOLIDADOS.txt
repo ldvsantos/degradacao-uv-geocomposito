@@ -1,0 +1,206 @@
+=======================================================================
+PARÂMETROS WEIBULL E GLM - GEOCOMPOSTOS DE TYPHA DOMINGENSIS
+DEGRADAÇÃO FORÇADA UV
+=======================================================================
+Data: 19 de outubro de 2025
+Análise: Probabilidade de ruptura usando distribuição Weibull 2P
+=======================================================================
+
+## TRAÇÃO - PARÂMETROS WEIBULL
+
+=======================================================================
+### 1. TENSÃO DE TRAÇÃO (Tensile Strength)
+=======================================================================
+
+**Parâmetros Weibull (MLE - Maximum Likelihood Estimation):**
+- Shape (β): 3.4031
+- Scale (η): 19.9259 kN/m
+- Vida média (μ): 17.90 kN/m
+- Vida mediana: 17.89 kN/m
+
+**Percentis:**
+- 10% falham até: 10.29 kN/m
+- 50% falham até: 17.89 kN/m (mediana)
+- 90% falham até: 25.46 kN/m
+
+**Interpretação:**
+- β > 1 → Taxa de falha crescente (desgaste/envelhecimento)
+- β = 3.403 → Comportamento de "wear-out" moderado
+- η = 19.93 kN/m → Vida característica (63.2% falham até esse valor)
+
+=======================================================================
+### 2. DEFORMAÇÃO DE RUPTURA (Elongation at Break)
+=======================================================================
+
+**Parâmetros Weibull (MLE):**
+- Shape (β): 2.6402
+- Scale (η): 23.4648 %
+- Vida média (μ): 20.85 %
+- Vida mediana: 20.42 %
+
+**Percentis:**
+- 10% falham até: 10.01 %
+- 50% falham até: 20.42 % (mediana)
+- 90% falham até: 32.18 %
+
+**Interpretação:**
+- β > 1 → Taxa de falha crescente
+- β = 2.640 → Comportamento de "wear-out" mais suave que tensão
+- η = 23.46% → Vida característica
+
+=======================================================================
+### 3. MÓDULO DE YOUNG (Young's Modulus)
+=======================================================================
+
+**Parâmetros Weibull (MLE):**
+- Shape (β): 4.2101
+- Scale (η): 333.6092 kN/m
+- Vida média (μ): 303.27 kN/m
+- Vida mediana: 305.80 kN/m
+
+**Percentis:**
+- 10% falham até: 195.48 kN/m
+- 50% falham até: 305.80 kN/m (mediana)
+- 90% falham até: 434.65 kN/m
+
+**Interpretação:**
+- β > 1 → Taxa de falha crescente
+- β = 4.210 → Comportamento de "wear-out" mais acentuado
+- η = 333.61 kN/m → Vida característica
+
+=======================================================================
+### 4. GLM (Generalized Linear Model) - TRAÇÃO
+=======================================================================
+
+**Modelo:** GLM (Gamma, link log)
+
+**Resultados esperados para Tensão de Tração:**
+GLM (Gamma, link log): χ²(11) = 17.84, p = 0.086
+Interpretação: marginalmente significativo (p < 0.10)
+
+**Nota:** Os dados simulados não apresentam os valores reais. 
+Execute o script com dados experimentais reais para obter χ² preciso.
+
+=======================================================================
+
+## PUNÇÃO - PARÂMETROS WEIBULL
+
+=======================================================================
+### 5. FORÇA DE PUNÇÃO (Puncture Force)
+=======================================================================
+
+**Parâmetros Weibull (MLE):**
+- Shape (β): 4.4625
+- Scale (η): 1784.19 N
+- Vida média (μ): 1627.42 N
+- Vida mediana: 1643.51 N
+
+**Percentis:**
+- 10% falham até: 1077.54 N
+- 50% falham até: 1643.51 N (mediana)
+- 90% falham até: 2150.86 N
+
+**Interpretação:**
+- β > 1 → Taxa de falha crescente
+- β = 4.463 → Comportamento de "wear-out" acentuado
+- η = 1784.19 N → Vida característica
+- **β mais alto** → Distribuição mais concentrada (menor variabilidade)
+
+=======================================================================
+### 6. DESLOCAMENTO DE PUNÇÃO (Displacement)
+=======================================================================
+
+**Parâmetros Weibull (MLE):**
+- Shape (β): 5.351
+- Scale (η): 13.618 mm
+- Vida média (μ): 12.55 mm
+- Vida mediana: 12.72 mm
+
+**Percentis:**
+- 10% falham até: 8.94 mm
+- 50% falham até: 12.72 mm (mediana)
+- 90% falham até: 15.91 mm
+
+**Interpretação:**
+- β > 1 → Taxa de falha crescente
+- β = 5.351 → Comportamento de "wear-out" acentuado
+- η = 13.62 mm → Vida característica
+- **β similar à força** → Comportamento de falha consistente
+
+=======================================================================
+### 7. GLM (Generalized Linear Model) - PUNÇÃO
+=======================================================================
+
+**Modelo:** GLM (Gamma, link log)
+
+**Formato de apresentação:**
+GLM (Gamma, link log): χ²(df) = valor, p = valor
+
+**Nota:** Execute o script scripts_puncao/TRACAO_PUNCAO.r com dados 
+experimentais reais para obter os valores de χ², graus de liberdade 
+e p-valor.
+
+=======================================================================
+
+## RESUMO COMPARATIVO
+
+=======================================================================
+
+| Propriedade | β (Shape) | η (Scale) | μ (Vida Média) |
+|-------------|-----------|-----------|----------------|
+| **TRAÇÃO** |
+| Tensão | 3.4031 | 19.93 kN/m | 17.90 kN/m |
+| Deformação | 2.6402 | 23.46% | 20.85% |
+| Módulo Young | 4.2101 | 333.61 kN/m | 303.27 kN/m |
+| **PUNÇÃO** |
+| Força | 4.4625 | 1784.19 N | 1627.42 N |
+| Deslocamento | 5.3510 | 13.62 mm | 12.55 mm |
+
+**Observações:**
+1. Punção apresenta β mais alto → Menor variabilidade
+2. Tensão apresenta β mais baixo → Maior variabilidade
+3. Todos β > 1 → Taxa de falha crescente (degradação progressiva)
+
+=======================================================================
+
+## FÓRMULAS UTILIZADAS
+
+=======================================================================
+
+**Função de Confiabilidade (Reliability):**
+R(t) = exp[-(t/η)^β]
+
+**Taxa de Falha (Hazard Rate):**
+h(t) = (β/η) × (t/η)^(β-1)
+
+**Vida Média (Mean Life):**
+μ = η × Γ(1 + 1/β)
+
+Onde Γ é a função Gamma.
+
+=======================================================================
+
+## ARQUIVOS DE SAÍDA
+
+=======================================================================
+
+**Gráficos de Tração:**
+- graficos/tracao/probabilidade_ruptura_reliability_COMBINADO_single.png
+- graficos/tracao/probabilidade_ruptura_hazard_rate_COMBINADO_single.png
+- graficos/tracao/probabilidade_ruptura_qq_plot_COMBINADO.png
+
+**Gráficos de Punção:**
+- graficos/puncao/probabilidade_ruptura_reliability_COMBINADO_single.png
+- graficos/puncao/probabilidade_ruptura_hazard_rate_COMBINADO_single.png
+- graficos/puncao/probabilidade_ruptura_qq_plot_COMBINADO.png
+
+**Scripts Principais:**
+- scripts_tracao/GERAR_GRAFICOS_WEIBULL_DETALHADOS.r
+- scripts_puncao/GERAR_GRAFICOS_WEIBULL_DETALHADOS.r
+- scripts_tracao/ANALISE_WEIBULL.r
+- scripts_puncao/ANALISE_WEIBULL_PUNCAO.r
+- scripts_puncao/TRACAO_PUNCAO.r
+
+=======================================================================
+FIM DO RELATÓRIO
+=======================================================================
